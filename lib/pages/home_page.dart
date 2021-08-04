@@ -5,11 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:corona/provider/covid_provider.dart';
 import 'package:corona/model/covid.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var covidProvider = Provider.of<CovidProvider>(context);
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('dd MMMM yyyy').format(now);
     covidProvider.getCovidData();
     return Scaffold(
       backgroundColor: bgColor,
@@ -58,28 +61,30 @@ class HomePage extends StatelessWidget {
                           height: 3,
                         ),
                         Text(
-                          'Terakhir di Update 23 July 2021',
+                          'Terakhir di Update ${formattedDate}',
                           style: greyTextStyle.copyWith(fontSize: 12),
                         ),
                         SizedBox(
                           height: 11,
                         ),
-                        FutureBuilder(builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            List<Covid> data = snapshot.data;
-                            return Column(
-                              children: data.map((item) {
-                                return Container(
-                                  child: CovidCard(item),
+                        FutureBuilder(
+                            future: covidProvider.getCovidData(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                List<Covid> data = snapshot.data;
+                                return Column(
+                                  children: data.map((item) {
+                                    return Container(
+                                      child: CovidCard(item),
+                                    );
+                                  }).toList(),
                                 );
-                              }).toList(),
-                            );
-                          } else {
-                            return Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                        })
+                              } else {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            })
                       ],
                     ),
                   ),

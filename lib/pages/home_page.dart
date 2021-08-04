@@ -1,4 +1,5 @@
 import 'package:corona/widget/covid_card.dart';
+import 'package:corona/widget/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:corona/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:corona/provider/covid_provider.dart';
 import 'package:corona/model/covid.dart';
 import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -80,9 +82,7 @@ class HomePage extends StatelessWidget {
                                   }).toList(),
                                 );
                               } else {
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
+                                return loading();
                               }
                             })
                       ],

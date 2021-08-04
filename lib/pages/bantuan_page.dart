@@ -2,8 +2,13 @@ import 'package:corona/pages/eror_page.dart';
 import 'package:corona/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BantuanPage extends StatelessWidget {
+  final String _tlp = 'tel:031 8430313';
+  void _launchTlp() async => await canLaunch(_tlp)
+      ? await launch('tel:031 8430313')
+      : throw 'Could not launch $_tlp';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,12 +94,7 @@ class BantuanPage extends StatelessWidget {
                               Spacer(),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ErorPage(),
-                                    ),
-                                  );
+                                  _launchTlp();
                                 },
                                 child: Container(
                                   height: 30,

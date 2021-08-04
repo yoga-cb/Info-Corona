@@ -1,7 +1,29 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:corona/theme.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class InformasiPage extends StatelessWidget {
+class InformasiPage extends StatefulWidget {
+  @override
+  _InformasiPageState createState() => _InformasiPageState();
+}
+
+class _InformasiPageState extends State<InformasiPage> {
+  String _url;
+  final String _mengenal = 'https://www.alodokter.com/virus-corona';
+  final String _rumahSakit = 'https://yankes.kemkes.go.id/app/siranap/';
+  final String _news =
+      'https://search.kompas.com/search/?q=corona&submit=Submit';
+  final String _hoax = 'https://covid19.go.id/p/hoax-buster/';
+  void _launchURL() async => await canLaunch(_url)
+      ? await launch(
+          _url,
+          forceWebView: true,
+          enableJavaScript: true,
+        )
+      : throw 'Could not launch $_url';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,10 +96,18 @@ class InformasiPage extends StatelessWidget {
                                 style: regularTextStyle.copyWith(fontSize: 18),
                               ),
                               Spacer(),
-                              Image.asset(
-                                'assets/icons/icon_tap.png',
-                                width: 11,
-                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _url = _mengenal;
+                                    _launchURL();
+                                  });
+                                },
+                                child: Image.asset(
+                                  'assets/icons/icon_tap.png',
+                                  width: 11,
+                                ),
+                              )
                             ],
                           ),
                         ),
@@ -109,9 +139,17 @@ class InformasiPage extends StatelessWidget {
                                 style: regularTextStyle.copyWith(fontSize: 18),
                               ),
                               Spacer(),
-                              Image.asset(
-                                'assets/icons/icon_tap.png',
-                                width: 11,
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _url = _rumahSakit;
+                                    _launchURL();
+                                  });
+                                },
+                                child: Image.asset(
+                                  'assets/icons/icon_tap.png',
+                                  width: 11,
+                                ),
                               ),
                             ],
                           ),
@@ -144,9 +182,17 @@ class InformasiPage extends StatelessWidget {
                                 style: regularTextStyle.copyWith(fontSize: 18),
                               ),
                               Spacer(),
-                              Image.asset(
-                                'assets/icons/icon_tap.png',
-                                width: 11,
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _url = _news;
+                                    _launchURL();
+                                  });
+                                },
+                                child: Image.asset(
+                                  'assets/icons/icon_tap.png',
+                                  width: 11,
+                                ),
                               ),
                             ],
                           ),
@@ -155,7 +201,7 @@ class InformasiPage extends StatelessWidget {
                       SizedBox(
                         height: 11,
                       ),
-                      // NOTE: RUMAH SAKIT
+                      // NOTE: HOAX
                       Container(
                         height: 61,
                         width: MediaQuery.of(context).size.width - (2 * edge),
@@ -179,9 +225,17 @@ class InformasiPage extends StatelessWidget {
                                 style: regularTextStyle.copyWith(fontSize: 18),
                               ),
                               Spacer(),
-                              Image.asset(
-                                'assets/icons/icon_tap.png',
-                                width: 11,
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _url = _hoax;
+                                    _launchURL();
+                                  });
+                                },
+                                child: Image.asset(
+                                  'assets/icons/icon_tap.png',
+                                  width: 11,
+                                ),
                               ),
                             ],
                           ),

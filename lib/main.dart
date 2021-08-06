@@ -50,12 +50,12 @@ class _HomeState extends State<Home> {
             BottomNavigationBarItem(
               activeIcon: Image.asset(
                 'assets/icons/icon_kasus.png',
-                width: 30,
+                width: 24,
                 color: greenColor,
               ),
               icon: Image.asset(
                 'assets/icons/icon_kasus.png',
-                width: 30,
+                width: 24,
               ),
               title: Text(
                 'Kasus',
@@ -96,6 +96,8 @@ class _HomeState extends State<Home> {
           currentIndex: _currentIndex,
           selectedItemColor: greenColor,
           unselectedItemColor: greyColor,
+          selectedFontSize: 14,
+          unselectedFontSize: 14,
           // fixedColor: greenColor,
           showUnselectedLabels: true,
           onTap: (index) {

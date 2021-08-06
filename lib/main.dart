@@ -31,7 +31,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
-  Color _iconColor = greyColor;
   final tabs = [
     HomePage(),
     InformasiPage(),
@@ -49,9 +48,13 @@ class _HomeState extends State<Home> {
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
+              activeIcon: Image.asset(
+                'assets/icons/icon_kasus.png',
+                width: 30,
+                color: greenColor,
+              ),
               icon: Image.asset(
                 'assets/icons/icon_kasus.png',
-                color: _iconColor,
                 width: 30,
               ),
               title: Text(
@@ -60,9 +63,13 @@ class _HomeState extends State<Home> {
               ),
             ),
             BottomNavigationBarItem(
+              activeIcon: Image.asset(
+                'assets/icons/icon_informasi.png',
+                width: 24,
+                color: greenColor,
+              ),
               icon: Image.asset(
                 'assets/icons/icon_informasi.png',
-                color: _iconColor,
                 width: 24,
               ),
               title: Text(
@@ -71,9 +78,13 @@ class _HomeState extends State<Home> {
               ),
             ),
             BottomNavigationBarItem(
+              activeIcon: Image.asset(
+                'assets/icons/icon_bantuan.png',
+                width: 24,
+                color: greenColor,
+              ),
               icon: Image.asset(
                 'assets/icons/icon_bantuan.png',
-                color: _iconColor,
                 width: 24,
               ),
               title: Text(
@@ -85,11 +96,11 @@ class _HomeState extends State<Home> {
           currentIndex: _currentIndex,
           selectedItemColor: greenColor,
           unselectedItemColor: greyColor,
+          // fixedColor: greenColor,
           showUnselectedLabels: true,
           onTap: (index) {
             setState(() {
               _currentIndex = index;
-              _iconColor = greenColor;
             });
           },
         ),

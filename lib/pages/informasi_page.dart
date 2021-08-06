@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:corona/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -73,174 +71,21 @@ class _InformasiPageState extends State<InformasiPage> {
                         height: 11,
                       ),
                       // NOTE: MENGENAL
-                      Container(
-                        height: 61,
-                        width: MediaQuery.of(context).size.width - (2 * edge),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: whiteColor),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: edge),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Image.asset(
-                                'assets/icons/icon_mengenal.png',
-                                width: 40,
-                              ),
-                              SizedBox(
-                                width: 16,
-                              ),
-                              Text(
-                                'Mengenal',
-                                style: regularTextStyle.copyWith(fontSize: 18),
-                              ),
-                              Spacer(),
-                              InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    _url = _mengenal;
-                                    _launchURL();
-                                  });
-                                },
-                                child: Image.asset(
-                                  'assets/icons/icon_tap.png',
-                                  width: 11,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                      infoCard('assets/icons/icon_mengenal.png', 'mengenal',
+                          _mengenal),
                       SizedBox(
                         height: 11,
                       ),
-                      // NOTE: RUMAH SAKIT
-                      Container(
-                        height: 61,
-                        width: MediaQuery.of(context).size.width - (2 * edge),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: whiteColor),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: edge),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Image.asset(
-                                'assets/icons/icon_RumahSakit.png',
-                                width: 42,
-                              ),
-                              SizedBox(
-                                width: 16,
-                              ),
-                              Text(
-                                'Rumah Sakit',
-                                style: regularTextStyle.copyWith(fontSize: 18),
-                              ),
-                              Spacer(),
-                              InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    _url = _rumahSakit;
-                                    _launchURL();
-                                  });
-                                },
-                                child: Image.asset(
-                                  'assets/icons/icon_tap.png',
-                                  width: 11,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      infoCard('assets/icons/icon_RumahSakit.png',
+                          'Rumah Sakit', _rumahSakit),
                       SizedBox(
                         height: 11,
                       ),
-                      // NOTE: NEWS
-                      Container(
-                        height: 61,
-                        width: MediaQuery.of(context).size.width - (2 * edge),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: whiteColor),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: edge),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Image.asset(
-                                'assets/icons/icon_news.png',
-                                width: 42,
-                              ),
-                              SizedBox(
-                                width: 16,
-                              ),
-                              Text(
-                                'News',
-                                style: regularTextStyle.copyWith(fontSize: 18),
-                              ),
-                              Spacer(),
-                              InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    _url = _news;
-                                    _launchURL();
-                                  });
-                                },
-                                child: Image.asset(
-                                  'assets/icons/icon_tap.png',
-                                  width: 11,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      infoCard('assets/icons/icon_news.png', 'News', _news),
                       SizedBox(
                         height: 11,
                       ),
-                      // NOTE: HOAX
-                      Container(
-                        height: 61,
-                        width: MediaQuery.of(context).size.width - (2 * edge),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: whiteColor),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: edge),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Image.asset(
-                                'assets/icons/icon_hoax.png',
-                                width: 42,
-                              ),
-                              SizedBox(
-                                width: 16,
-                              ),
-                              Text(
-                                'Hoax',
-                                style: regularTextStyle.copyWith(fontSize: 18),
-                              ),
-                              Spacer(),
-                              InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    _url = _hoax;
-                                    _launchURL();
-                                  });
-                                },
-                                child: Image.asset(
-                                  'assets/icons/icon_tap.png',
-                                  width: 11,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      infoCard('assets/icons/icon_hoax.png', 'Hoax', _hoax),
                     ],
                   ),
                 ),
@@ -249,6 +94,46 @@ class _InformasiPageState extends State<InformasiPage> {
           )
         ],
       )),
+    );
+  }
+
+  Container infoCard(String icon, String label, String url) {
+    return Container(
+      height: 61,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20), color: whiteColor),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: edge),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              icon,
+              width: 40,
+            ),
+            SizedBox(
+              width: 16,
+            ),
+            Text(
+              label,
+              style: regularTextStyle.copyWith(fontSize: 18),
+            ),
+            Spacer(),
+            InkWell(
+              onTap: () {
+                setState(() {
+                  _url = url;
+                  _launchURL();
+                });
+              },
+              child: Image.asset(
+                'assets/icons/icon_tap.png',
+                width: 11,
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

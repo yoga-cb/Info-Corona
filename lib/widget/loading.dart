@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:corona/theme.dart';
 
-class loading extends StatelessWidget {
+class LoadingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer(

@@ -1,6 +1,6 @@
 # corona
 
-A new Flutter project.
+Android App Based on Flutter
 
 ## Getting Started
 
